@@ -388,8 +388,16 @@ const WhyUs = () => (
 );
 
 const CTA = () => (
-  <section className="py-24 bg-gray-50">
-    <div className="max-w-4xl mx-auto px-4 text-center">
+  <section className="relative py-24 overflow-hidden">
+    <div className="absolute inset-0 z-0">
+      <img 
+        src="https://images.unsplash.com/photo-1597484662317-9bd7732dfad6?q=80&w=2070&auto=format&fit=crop" 
+        alt="Veterinary background" 
+        className="w-full h-full object-cover opacity-10"
+        referrerPolicy="no-referrer"
+      />
+    </div>
+    <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
