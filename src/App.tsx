@@ -14,7 +14,14 @@ import {
   X, 
   ChevronLeft,
   Star,
-  Activity
+  Activity,
+  Instagram,
+  Facebook,
+  Loader2,
+  AlertCircle,
+  Sparkles,
+  Pill,
+  Home
 } from 'lucide-react';
 
 // --- Types ---
@@ -190,8 +197,8 @@ const Hero = ({ setPage }: { setPage: (p: Page) => void }) => (
         >
           <div className="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white">
             <img 
-              src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?q=80&w=2070&auto=format&fit=crop" 
-              alt="Veterinarian with dog" 
+              src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2070&auto=format&fit=crop" 
+              alt="Veterinary Clinic Team" 
               className="w-full h-[500px] object-cover"
               referrerPolicy="no-referrer"
             />
@@ -394,11 +401,11 @@ const CTA = () => (
           نحن هنا للمساعدة! تواصل معنا الآن لحجز موعد أو للاستفسار عن خدماتنا.
         </p>
         <div className="flex flex-wrap justify-center gap-6">
-          <a href="https://wa.me/123456789" target="_blank" rel="noreferrer" className="btn-primary flex items-center gap-2 bg-green-500 hover:bg-green-600 shadow-green-500/20">
+          <a href="https://wa.me/9647704144757" target="_blank" rel="noreferrer" className="btn-primary flex items-center gap-2 bg-green-500 hover:bg-green-600 shadow-green-500/20">
             <MessageCircle size={20} />
             <span>تواصل عبر واتساب</span>
           </a>
-          <a href="tel:+123456789" className="btn-secondary flex items-center gap-2">
+          <a href="tel:07704144757" className="btn-secondary flex items-center gap-2">
             <Phone size={20} />
             <span>اتصل بنا الآن</span>
           </a>
@@ -431,26 +438,27 @@ const Footer = ({ setPage }: { setPage: (p: Page) => void }) => (
           <ul className="space-y-4 text-gray-400">
             <li className="flex items-center gap-3">
               <Phone size={18} className="text-primary" />
-              <span>+123 456 789</span>
+              <span>07704144757</span>
             </li>
             <li className="flex items-center gap-3">
               <MapPin size={18} className="text-primary" />
-              <span>شارع الحيوانات، المدينة، الدولة</span>
+              <span>النجف الأشرف، حي العدالة</span>
             </li>
             <li className="flex items-center gap-3">
               <Clock size={18} className="text-primary" />
-              <span>السبت - الخميس: 9ص - 9م</span>
+              <span>يومياً: 4م - 10م</span>
             </li>
           </ul>
         </div>
         <div>
           <h4 className="text-xl font-bold mb-6">تابعنا</h4>
           <div className="flex gap-4">
-            {[1, 2, 3, 4].map((i) => (
-              <a key={i} href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
-                <Star size={18} />
-              </a>
-            ))}
+            <a href="https://www.instagram.com/kokh_vet?igsh=MTE3OGc2OHUwMWZxZA%3D%3D&utm_source=qr" target="_blank" rel="noreferrer" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+              <Instagram size={18} />
+            </a>
+            <a href="https://www.facebook.com/share/18995mZBgE/?mibextid=wwXIfr" target="_blank" rel="noreferrer" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+              <Facebook size={18} />
+            </a>
           </div>
         </div>
       </div>
@@ -463,7 +471,7 @@ const Footer = ({ setPage }: { setPage: (p: Page) => void }) => (
 
 // --- Pages ---
 
-const HomePage = ({ setPage }: { setPage: (p: Page) => void, key?: string }) => (
+const HomePage = ({ setPage }: { setPage: (p: Page) => void, key?: any }) => (
   <motion.div
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
@@ -477,16 +485,16 @@ const HomePage = ({ setPage }: { setPage: (p: Page) => void, key?: string }) => 
   </motion.div>
 );
 
-const ServicesPage = ({ key }: { key?: string }) => {
+const ServicesPage = (_props: { key?: any }) => {
   const allServices = [
-    { icon: Stethoscope, title: "فحص عام", desc: "فحوصات دورية شاملة للتأكد من سلامة حيوانك ونموه السليم." },
-    { icon: Syringe, title: "تطعيمات", desc: "برامج تحصين متكاملة ضد الأمراض المعدية والشائعة." },
-    { icon: Scissors, title: "رعاية وتجميل", desc: "خدمات قص الشعر، الاستحمام، وتقليم الأظافر باحترافية." },
-    { icon: Activity, title: "جراحة", desc: "عمليات جراحية دقيقة باستخدام أحدث الأجهزة والتعقيم." },
-    { icon: ShieldCheck, title: "صيدلية بيطرية", desc: "توفير جميع الأدوية والمكملات الغذائية اللازمة." },
-    { icon: Heart, title: "رعاية أسنان", desc: "تنظيف وعلاج مشاكل الأسنان واللثة للحيوانات." },
-    { icon: MapPin, title: "فندق حيوانات", desc: "إقامة مريحة وآمنة لحيوانك أثناء غيابك." },
-    { icon: Phone, title: "استشارات طارئة", desc: "دعم طبي سريع في حالات الطوارئ والحوادث." },
+    { icon: Stethoscope, title: "الفحص الطبي", desc: "فحوصات دورية شاملة للتأكد من سلامة حيوانك ونموه السليم." },
+    { icon: Syringe, title: "التطعيمات", desc: "برامج تحصين متكاملة ضد الأمراض المعدية والشائعة." },
+    { icon: Activity, title: "العمليات الجراحية", desc: "عمليات جراحية دقيقة باستخدام أحدث الأجهزة والتعقيم." },
+    { icon: AlertCircle, title: "علاج الحالات الطارئة", desc: "دعم طبي سريع في حالات الطوارئ والحوادث على مدار الساعة." },
+    { icon: Sparkles, title: "العناية والنظافة", desc: "خدمات قص الشعر، الاستحمام، وتقليم الأظافر باحترافية." },
+    { icon: Pill, title: "الصيدلية البيطرية", desc: "توفير جميع الأدوية والمكملات الغذائية اللازمة." },
+    { icon: Heart, title: "رعاية الأسنان", desc: "تنظيف وعلاج مشاكل الأسنان واللثة للحيوانات." },
+    { icon: Home, title: "فندق الحيوانات", desc: "إقامة مريحة وآمنة لحيوانك أثناء غيابك." },
   ];
 
   return (
@@ -520,7 +528,7 @@ const ServicesPage = ({ key }: { key?: string }) => {
   );
 };
 
-const ContactPage = ({ key }: { key?: string }) => (
+const ContactPage = (_props: { key?: any }) => (
   <motion.div
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
@@ -543,47 +551,50 @@ const ContactPage = ({ key }: { key?: string }) => (
                 <Phone size={24} />
               </div>
               <h4 className="text-xl font-bold mb-2">رقم الهاتف</h4>
-              <p className="text-gray-600">+123 456 789</p>
+              <p className="text-gray-600">07704144757</p>
             </div>
             <div className="bg-gray-50 p-8 rounded-3xl border border-gray-100">
               <div className="w-12 h-12 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center mb-6">
                 <MessageCircle size={24} />
               </div>
               <h4 className="text-xl font-bold mb-2">واتساب</h4>
-              <p className="text-gray-600">+123 456 789</p>
+              <p className="text-gray-600">07704144757</p>
             </div>
             <div className="bg-gray-50 p-8 rounded-3xl border border-gray-100">
               <div className="w-12 h-12 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6">
                 <MapPin size={24} />
               </div>
               <h4 className="text-xl font-bold mb-2">العنوان</h4>
-              <p className="text-gray-600">شارع الحيوانات، المدينة، الدولة</p>
+              <p className="text-gray-600">النجف الأشرف، حي العدالة</p>
             </div>
             <div className="bg-gray-50 p-8 rounded-3xl border border-gray-100">
               <div className="w-12 h-12 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6">
                 <Clock size={24} />
               </div>
               <h4 className="text-xl font-bold mb-2">أوقات العمل</h4>
-              <p className="text-gray-600">السبت - الخميس: 9ص - 9م</p>
+              <p className="text-gray-600">يومياً: 4م - 10م</p>
             </div>
           </div>
           
           <div className="flex flex-wrap gap-4">
-            <a href="https://wa.me/123456789" target="_blank" rel="noreferrer" className="btn-primary flex items-center gap-2 bg-green-500 hover:bg-green-600">
+            <a href="https://wa.me/9647704144757" target="_blank" rel="noreferrer" className="btn-primary flex items-center gap-2 bg-green-500 hover:bg-green-600">
               <MessageCircle size={20} />
               <span>تواصل عبر واتساب</span>
             </a>
-            <a href="tel:+123456789" className="btn-secondary flex items-center gap-2">
+            <a href="tel:07704144757" className="btn-secondary flex items-center gap-2">
               <Phone size={20} />
               <span>اتصل بنا الآن</span>
+            </a>
+            <a href="https://maps.app.goo.gl/Q8nQpMCTWE8vr49D9?g_st=ac" target="_blank" rel="noreferrer" className="btn-secondary flex items-center gap-2 border-primary/20">
+              <MapPin size={20} />
+              <span>موقعنا على الخريطة</span>
             </a>
           </div>
         </div>
 
         <div className="h-[500px] rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white bg-gray-100">
-          {/* Mock Google Map */}
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.123456789!2d31.23456789!3d30.0123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDAwJzQ0LjQiTiAzMcKwMTQnMDQuNCJF!5e0!3m2!1sen!2seg!4v1234567890" 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3401.7654321!2d44.3456789!3d32.0123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDAwJzQ0LjQiTiA0NMKwMjAnMDQuNCJF!5e0!3m2!1sar!2siq!4v1711534567890!5m2!1sar!2siq" 
             width="100%" 
             height="100%" 
             style={{ border: 0 }} 
@@ -601,29 +612,56 @@ const ContactPage = ({ key }: { key?: string }) => (
 
 export default function App() {
   const [page, setPage] = useState<Page>('home');
+  const [isLoading, setIsLoading] = useState(false);
 
   // Scroll to top on page change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [page]);
 
+  const handleSetPage = (newPage: Page) => {
+    if (newPage === page) return;
+    setIsLoading(true);
+    setTimeout(() => {
+      setPage(newPage);
+      setIsLoading(false);
+    }, 600);
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar currentPage={page} setPage={setPage} />
+      <Navbar currentPage={page} setPage={handleSetPage} />
       
-      <main className="flex-grow">
+      <main className="flex-grow relative">
         <AnimatePresence mode="wait">
-          {page === 'home' && <HomePage key="home" setPage={setPage} />}
-          {page === 'services' && <ServicesPage key="services" />}
-          {page === 'contact' && <ContactPage key="contact" />}
+          {isLoading ? (
+            <motion.div
+              key="loader"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 z-40 flex items-center justify-center bg-white/50 backdrop-blur-sm min-h-[60vh]"
+            >
+              <div className="flex flex-col items-center gap-4">
+                <Loader2 className="w-12 h-12 text-primary animate-spin" />
+                <span className="text-primary font-bold animate-pulse">جاري التحميل...</span>
+              </div>
+            </motion.div>
+          ) : (
+            <>
+              {page === 'home' && <HomePage key="home" setPage={handleSetPage} />}
+              {page === 'services' && <ServicesPage key="services" />}
+              {page === 'contact' && <ContactPage key="contact" />}
+            </>
+          )}
         </AnimatePresence>
       </main>
 
-      <Footer setPage={setPage} />
+      <Footer setPage={handleSetPage} />
 
       {/* Floating WhatsApp Button */}
       <a 
-        href="https://wa.me/123456789" 
+        href="https://wa.me/9647704144757" 
         target="_blank" 
         rel="noreferrer"
         className="fixed bottom-8 left-8 z-50 w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all"
