@@ -29,25 +29,6 @@ type Page = 'home' | 'services' | 'contact';
 
 // --- Components ---
 
-const Logo = ({ className = "h-10 w-10" }: { className?: string }) => (
-  <div className={`flex items-center gap-2 ${className}`}>
-    <div className="relative h-10 w-10 bg-primary rounded-xl flex items-center justify-center overflow-hidden">
-      {/* Simple House Shape */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
-          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-          <circle cx="12" cy="13" r="3" fill="white" />
-          <path d="M12 11.5c.5-.5 1-.5 1.5 0s.5 1 0 1.5l-1.5 1.5-1.5-1.5c-.5-.5-.5-1 0-1.5s1-.5 1.5 0z" fill="primary" />
-        </svg>
-      </div>
-    </div>
-    <div className="flex flex-col">
-      <span className="text-xl font-extrabold text-primary leading-none">الكوخ</span>
-      <span className="text-[10px] tracking-[0.2em] text-primary-dark font-bold uppercase">AL KOUKH</span>
-    </div>
-  </div>
-);
-
 const Navbar = ({ currentPage, setPage }: { currentPage: Page, setPage: (p: Page) => void }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -62,7 +43,7 @@ const Navbar = ({ currentPage, setPage }: { currentPage: Page, setPage: (p: Page
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <div className="flex-shrink-0 cursor-pointer" onClick={() => setPage('home')}>
-            <Logo />
+            <span className="text-2xl font-black text-primary">الكوخ</span>
           </div>
           
           {/* Desktop Menu */}
@@ -137,86 +118,60 @@ const Navbar = ({ currentPage, setPage }: { currentPage: Page, setPage: (p: Page
 };
 
 const Hero = ({ setPage }: { setPage: (p: Page) => void }) => (
-  <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-gray-50">
+  <section className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden bg-gray-50 pt-32 pb-24">
     {/* Background Pattern */}
     <div className="absolute inset-0 opacity-5 pointer-events-none">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2"></div>
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-primary rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2"></div>
     </div>
 
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="flex flex-col items-center text-center">
         <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="max-w-4xl"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-bold mb-6">
-            <Star size={16} fill="currentColor" />
-            <span>العيادة البيطرية الأكثر ثقة</span>
+          <div className="inline-flex items-center gap-2 px-6 py-2.5 bg-primary/10 text-primary rounded-full text-sm font-black mb-10 tracking-wide">
+            <Star size={18} fill="currentColor" />
+            <span>العيادة البيطرية الأكثر ثقة في النجف الأشرف</span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-tight mb-6">
+          
+          <h1 className="text-5xl md:text-8xl font-black text-gray-900 leading-tight mb-10">
             رعاية متكاملة <br />
             <span className="text-primary">لحيواناتك الأليفة</span>
           </h1>
-          <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-lg">
+          
+          <p className="text-xl md:text-2xl text-gray-600 mb-14 leading-relaxed max-w-3xl mx-auto">
             نقدم أفضل الخدمات البيطرية بأيدي خبراء متخصصين، لضمان صحة وسعادة أصدقائك الأليفين في بيئة آمنة ومريحة.
           </p>
-          <div className="flex flex-wrap gap-4">
-            <button onClick={() => setPage('contact')} className="btn-primary">
-              احجز موعد
+          
+          <div className="flex flex-wrap justify-center gap-6 mb-20">
+            <button onClick={() => setPage('contact')} className="btn-primary text-xl px-12 py-4">
+              احجز موعد الآن
             </button>
-            <button onClick={() => setPage('services')} className="btn-secondary">
-              خدماتنا
+            <button onClick={() => setPage('services')} className="btn-secondary text-xl px-12 py-4">
+              استعرض خدماتنا
             </button>
           </div>
-          
-          <div className="mt-12 flex items-center gap-6">
-            <div className="flex -space-x-3 rtl:space-x-reverse">
-              {[1, 2, 3, 4].map((i) => (
+
+          <div className="flex flex-col items-center gap-8">
+            <div className="flex -space-x-4 rtl:space-x-reverse">
+              {[1, 2, 3, 4, 5].map((i) => (
                 <img 
                   key={i}
                   src={`https://picsum.photos/seed/pet${i}/100/100`} 
                   alt="Pet" 
-                  className="w-12 h-12 rounded-full border-4 border-white object-cover"
+                  className="w-16 h-16 rounded-full border-4 border-white shadow-xl object-cover"
                   referrerPolicy="no-referrer"
                 />
               ))}
             </div>
-            <div className="text-sm font-bold text-gray-500">
-              <span className="text-primary">+500</span> حيوان أليف سعيد
+            <div className="text-xl font-bold text-gray-500">
+              انضم إلى أكثر من <span className="text-primary font-black">+500</span> عميل يثقون بنا
             </div>
           </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          className="relative"
-        >
-          <div className="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white">
-            <img 
-              src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2070&auto=format&fit=crop" 
-              alt="Veterinary Clinic Team" 
-              className="w-full h-[500px] object-cover"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-          {/* Floating Card */}
-          <motion.div 
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -bottom-6 -right-6 z-20 bg-white p-6 rounded-3xl shadow-xl flex items-center gap-4 border border-gray-100"
-          >
-            <div className="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
-              <Activity size={24} />
-            </div>
-            <div>
-              <div className="text-xs text-gray-500 font-bold">صحة ممتازة</div>
-              <div className="text-lg font-black text-gray-900">رعاية 24/7</div>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </div>
@@ -428,7 +383,7 @@ const Footer = ({ setPage }: { setPage: (p: Page) => void }) => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
         <div>
-          <Logo className="mb-6 invert brightness-0" />
+          <h3 className="text-2xl font-black text-primary mb-6">الكوخ</h3>
           <p className="text-gray-400 leading-relaxed">
             عيادة الكوخ البيطرية هي وجهتك الأولى لرعاية حيواناتك الأليفة. نقدم خدمات طبية وتجميلية متكاملة بأعلى المعايير.
           </p>
@@ -493,16 +448,91 @@ const HomePage = ({ setPage }: { setPage: (p: Page) => void, key?: any }) => (
   </motion.div>
 );
 
+const ServiceDetailCard = ({ icon: Icon, title, description, image, delay = 0 }: { icon: any, title: string, description: string, image: string, delay?: number, key?: any }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ delay }}
+    className="bg-white rounded-[2.5rem] overflow-hidden shadow-lg border border-gray-100 flex flex-col h-full group hover:shadow-2xl transition-all duration-500"
+  >
+    <div className="relative h-64 overflow-hidden">
+      <img 
+        src={image} 
+        alt={title} 
+        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+        referrerPolicy="no-referrer"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+        <span className="text-white font-bold text-sm">تعرف على المزيد</span>
+      </div>
+      <div className="absolute top-4 right-4 w-12 h-12 bg-white/90 backdrop-blur-sm text-primary rounded-2xl flex items-center justify-center shadow-lg">
+        <Icon size={24} />
+      </div>
+    </div>
+    <div className="p-8 flex-grow flex flex-col">
+      <h4 className="text-2xl font-black text-gray-900 mb-4 group-hover:text-primary transition-colors">{title}</h4>
+      <p className="text-gray-600 leading-relaxed mb-6 flex-grow">{description}</p>
+      <div className="pt-6 border-t border-gray-50">
+        <div className="flex items-center gap-2 text-primary font-bold text-sm">
+          <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+          <span>خدمة متوفرة الآن</span>
+        </div>
+      </div>
+    </div>
+  </motion.div>
+);
+
 const ServicesPage = (_props: { key?: any }) => {
   const allServices = [
-    { icon: Stethoscope, title: "الفحص الطبي", desc: "فحوصات دورية شاملة للتأكد من سلامة حيوانك ونموه السليم." },
-    { icon: Syringe, title: "التطعيمات", desc: "برامج تحصين متكاملة ضد الأمراض المعدية والشائعة." },
-    { icon: Activity, title: "العمليات الجراحية", desc: "عمليات جراحية دقيقة باستخدام أحدث الأجهزة والتعقيم." },
-    { icon: AlertCircle, title: "علاج الحالات الطارئة", desc: "دعم طبي سريع في حالات الطوارئ والحوادث على مدار الساعة." },
-    { icon: Sparkles, title: "العناية والنظافة", desc: "خدمات قص الشعر، الاستحمام، وتقليم الأظافر باحترافية." },
-    { icon: Pill, title: "الصيدلية البيطرية", desc: "توفير جميع الأدوية والمكملات الغذائية اللازمة." },
-    { icon: Heart, title: "رعاية الأسنان", desc: "تنظيف وعلاج مشاكل الأسنان واللثة للحيوانات." },
-    { icon: Home, title: "فندق الحيوانات", desc: "إقامة مريحة وآمنة لحيوانك أثناء غيابك." },
+    { 
+      icon: Stethoscope, 
+      title: "الفحص الطبي الشامل", 
+      image: "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?q=80&w=800&auto=format&fit=crop",
+      desc: "نقدم فحوصات دورية دقيقة تشمل فحص القلب، الرئتين، العيون، والأذنين. نستخدم أحدث أجهزة السونار والتحاليل لضمان الكشف المبكر عن أي مشاكل صحية قد تواجه أليفك." 
+    },
+    { 
+      icon: Syringe, 
+      title: "برامج التطعيمات", 
+      image: "https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?q=80&w=800&auto=format&fit=crop",
+      desc: "حماية حيوانك تبدأ من التحصين. نوفر جميع اللقاحات الأساسية والسنوية للقطط والكلاب ضد الأمراض الفيروسية والبكتيرية الخطيرة، مع جدول متابعة دقيق لكل حالة." 
+    },
+    { 
+      icon: Activity, 
+      title: "الجراحة العامة والمتخصصة", 
+      image: "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?q=80&w=800&auto=format&fit=crop",
+      desc: "تضم عيادتنا غرفة عمليات مجهزة بالكامل لإجراء العمليات الصغرى والكبرى، من عمليات التعقيم إلى جراحة العظام والأنسجة الرخوة، تحت إشراف طاقم جراحي خبير." 
+    },
+    { 
+      icon: AlertCircle, 
+      title: "قسم الطوارئ والإنعاش", 
+      image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=800&auto=format&fit=crop",
+      desc: "نحن مستعدون دائماً للحالات الحرجة. سواء كانت حوادث أو تسمم أو نوبات مفاجئة، نوفر رعاية طبية فورية وأجهزة تنفس اصطناعي لإنقاذ حياة أليفك في أسرع وقت." 
+    },
+    { 
+      icon: Sparkles, 
+      title: "العناية التجميلية (Grooming)", 
+      image: "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?q=80&w=800&auto=format&fit=crop",
+      desc: "دلل أليفك بخدماتنا التجميلية التي تشمل الاستحمام الطبي، قص الشعر الاحترافي، تقليم الأظافر، وتنظيف الأذنين، باستخدام منتجات آمنة تماماً ومخصصة للحيوانات." 
+    },
+    { 
+      icon: Pill, 
+      title: "الصيدلية والمكملات", 
+      image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800&auto=format&fit=crop",
+      desc: "صيدليتنا توفر تشكيلة واسعة من الأدوية البيطرية الأصلية، الفيتامينات، والمكملات الغذائية، بالإضافة إلى الأغذية العلاجية المخصصة لحالات الحساسية ومشاكل الهضم." 
+    },
+    { 
+      icon: Heart, 
+      title: "طب وجراحة الأسنان", 
+      image: "https://images.unsplash.com/photo-1599443015574-be5fe8a05783?q=80&w=800&auto=format&fit=crop",
+      desc: "صحة الفم تؤثر على صحة الجسم بالكامل. نقدم خدمات تنظيف الجير بالموجات فوق الصوتية، علاج التهابات اللثة، وخلع الأسنان التالفة لضمان راحة أليفك أثناء الأكل." 
+    },
+    { 
+      icon: Home, 
+      title: "الفندق والرعاية النهارية", 
+      image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?q=80&w=800&auto=format&fit=crop",
+      desc: "سافر وأنت مطمئن! نوفر غرفاً فندقية مكيفة ونظيفة، مع وجبات غذائية متوازنة ووقت للعب، تحت إشراف طبي مستمر لضمان سلامة حيوانك طوال فترة إقامته." 
+    },
   ];
 
   return (
@@ -520,13 +550,14 @@ const ServicesPage = (_props: { key?: any }) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {allServices.map((service, i) => (
-            <ServiceCard 
+            <ServiceDetailCard 
               key={i}
               icon={service.icon}
               title={service.title}
               description={service.desc}
+              image={service.image}
               delay={i * 0.1}
             />
           ))}
