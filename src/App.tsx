@@ -139,7 +139,7 @@ const Hero = ({ setPage }: { setPage: (p: Page) => void }) => (
         >
           <div className="inline-flex items-center gap-2 px-6 py-2.5 bg-primary/10 text-primary rounded-full text-sm font-black mb-10 tracking-wide mx-auto lg:mx-0">
             <Star size={18} fill="currentColor" />
-            <span>العيادة البيطرية الأكثر ثقة في النجف الأشرف</span>
+            <span>العيادة البيطرية الأكثر ثقة في بغداد - المنصور</span>
           </div>
           
           <h1 className="text-4xl md:text-7xl font-black text-gray-900 leading-tight mb-10">
@@ -176,7 +176,7 @@ const Hero = ({ setPage }: { setPage: (p: Page) => void }) => (
               <div className="flex text-yellow-500 mb-1">
                 {[1, 2, 3, 4, 5].map((i) => <Star key={i} size={14} fill="currentColor" />)}
               </div>
-              <p className="text-gray-500 font-bold">+500 عميل سعيد في النجف</p>
+              <p className="text-gray-500 font-bold">+500 عميل سعيد في بغداد</p>
             </div>
           </div>
         </motion.div>
@@ -530,7 +530,7 @@ const Footer = ({ setPage }: { setPage: (p: Page) => void }) => (
             </li>
             <li className="flex items-center gap-3">
               <MapPin size={18} className="text-primary" />
-              <span>النجف الأشرف، حي العدالة</span>
+              <span>المنصور، ساحة اللقاء، شارع الوشاش</span>
             </li>
             <li className="flex items-center gap-3">
               <Clock size={18} className="text-primary" />
@@ -731,7 +731,7 @@ const ContactPage = (_props: { key?: any }) => (
                 <MapPin size={24} />
               </div>
               <h4 className="text-xl font-bold mb-2">العنوان</h4>
-              <p className="text-gray-600">النجف الأشرف، حي العدالة</p>
+              <p className="text-gray-600">المنصور، ساحة اللقاء، شارع الوشاش قرب كاتب عدل</p>
             </div>
             <div className="bg-gray-50 p-8 rounded-3xl border border-gray-100">
               <div className="w-12 h-12 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6">
@@ -751,7 +751,7 @@ const ContactPage = (_props: { key?: any }) => (
               <Phone size={20} />
               <span>اتصل بنا الآن</span>
             </a>
-            <a href="https://maps.app.goo.gl/Q8nQpMCTWE8vr49D9?g_st=ac" target="_blank" rel="noreferrer" className="btn-secondary flex items-center gap-2 border-primary/20">
+            <a href="https://maps.app.goo.gl/mughuGEqwwryoGjv8?g_st=ac" target="_blank" rel="noreferrer" className="btn-secondary flex items-center gap-2 border-primary/20">
               <MapPin size={20} />
               <span>موقعنا على الخريطة</span>
             </a>
@@ -760,7 +760,7 @@ const ContactPage = (_props: { key?: any }) => (
 
         <div className="h-[500px] rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white bg-gray-100">
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3401.7654321!2d44.3456789!3d32.0123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDAwJzQ0LjQiTiA0NMKwMjAnMDQuNCJF!5e0!3m2!1sar!2siq!4v1711534567890!5m2!1sar!2siq" 
+            src="https://maps.google.com/maps?q=المنصور%20ساحة%20اللقاء%20شارع%20الوشاش%20قرب%20كاتب%20عدل&t=&z=15&ie=UTF8&iwloc=&output=embed" 
             width="100%" 
             height="100%" 
             style={{ border: 0 }} 
