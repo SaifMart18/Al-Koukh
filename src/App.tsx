@@ -534,7 +534,7 @@ const Footer = ({ setPage }: { setPage: (p: Page) => void }) => (
             </li>
             <li className="flex items-center gap-3">
               <Clock size={18} className="text-primary" />
-              <span>يومياً: 4م - 10م</span>
+              <span>يومياً: 9 صباحاً - 12 مساءً</span>
             </li>
           </ul>
         </div>
@@ -738,7 +738,7 @@ const ContactPage = (_props: { key?: any }) => (
                 <Clock size={24} />
               </div>
               <h4 className="text-xl font-bold mb-2">أوقات العمل</h4>
-              <p className="text-gray-600">يومياً: 4م - 10م</p>
+              <p className="text-gray-600">يومياً: 9 صباحاً - 12 مساءً</p>
             </div>
           </div>
           
