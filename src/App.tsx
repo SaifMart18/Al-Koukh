@@ -22,7 +22,10 @@ import {
   Sparkles,
   Pill,
   Home,
-  PawPrint
+  PawPrint,
+  User,
+  Dog,
+  Cat
 } from 'lucide-react';
 
 // --- Types ---
@@ -570,6 +573,7 @@ const HomePage = ({ setPage }: { setPage: (p: Page) => void, key?: any }) => (
     <ClinicShowcase />
     <HomeServices setPage={setPage} />
     <WhyUs />
+    <BookingForm />
     <CTA />
   </motion.div>
 );
@@ -609,6 +613,258 @@ const ServiceDetailCard = ({ icon: Icon, title, description, image, delay = 0 }:
     </div>
   </motion.div>
 );
+
+const BookingForm = () => {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    phone: '',
+    address: '',
+    petName: '',
+    petType: 'قط',
+    groomingType: '',
+    bathingType: '',
+  });
+
+  const catGroomingOptions = ['قصة اسد', 'قصة شورت هير', 'نمره ١', 'ترتيب'];
+  const dogGroomingOptions = ['قصه اسد', 'نمرة ١', 'شورت هير', 'قصه مميزه'];
+  const bathingOptions = ['تحميم اعتيادي', 'تحميم طبي'];
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.groomingType && !formData.bathingType) {
+      alert('يرجى اختيار خدمة واحدة على الأقل (حلاقة أو تحميم)');
+      return;
+    }
+
+    const services = [];
+    if (formData.groomingType) services.push(`حلاقة (${formData.groomingType})`);
+    if (formData.bathingType) services.push(formData.bathingType);
+
+    const message = `*طلب حجز خدمة حلاقة وتحميم*%0A%0A` +
+      `*الاسم الثلاثي:* ${formData.fullName}%0A` +
+      `*رقم الهاتف:* ${formData.phone}%0A` +
+      `*العنوان:* ${formData.address}%0A` +
+      `*اسم الحيوان:* ${formData.petName}%0A` +
+      `*نوع الحيوان:* ${formData.petType}%0A` +
+      `*الخدمات المطلوبة:* ${services.join(' + ')}`;
+    
+    window.open(`https://wa.me/9647704144757?text=${message}`, '_blank');
+  };
+
+  return (
+    <section id="booking" className="py-24 bg-white">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-gray-50 rounded-[3rem] p-8 md:p-16 shadow-xl border border-gray-100">
+          <div className="text-center mb-12">
+            <div className="w-20 h-20 bg-primary/10 text-primary rounded-3xl flex items-center justify-center mx-auto mb-6">
+              <Scissors size={40} />
+            </div>
+            <h2 className="text-4xl font-black text-gray-900 mb-4">حجز خدمة حلاقة وتحميم</h2>
+            <p className="text-gray-600">املأ البيانات التالية وسنقوم بالتواصل معك لتأكيد الحجز</p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-2">
+                <label className="block text-sm font-bold text-gray-700 mr-2">الاسم الثلاثي</label>
+                <div className="relative">
+                  <User className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                  <input
+                    required
+                    type="text"
+                    placeholder="أدخل اسمك الكامل"
+                    className="w-full bg-white border border-gray-200 rounded-2xl py-4 pr-12 pl-4 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                    value={formData.fullName}
+                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-bold text-gray-700 mr-2">رقم الهاتف</label>
+                <div className="relative">
+                  <Phone className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                  <input
+                    required
+                    type="tel"
+                    placeholder="07XXXXXXXX"
+                    className="w-full bg-white border border-gray-200 rounded-2xl py-4 pr-12 pl-4 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2 md:col-span-2">
+                <label className="block text-sm font-bold text-gray-700 mr-2">العنوان</label>
+                <div className="relative">
+                  <MapPin className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                  <input
+                    required
+                    type="text"
+                    placeholder="بغداد، المنصور..."
+                    className="w-full bg-white border border-gray-200 rounded-2xl py-4 pr-12 pl-4 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                    value={formData.address}
+                    onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-bold text-gray-700 mr-2">اسم الحيوان</label>
+                <div className="relative">
+                  <PawPrint className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                  <input
+                    required
+                    type="text"
+                    placeholder="اسم أليفك"
+                    className="w-full bg-white border border-gray-200 rounded-2xl py-4 pr-12 pl-4 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                    value={formData.petName}
+                    onChange={(e) => setFormData({ ...formData, petName: e.target.value })}
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-bold text-gray-700 mr-2">نوع الحيوان</label>
+                <div className="flex gap-4">
+                  <button
+                    type="button"
+                    onClick={() => setFormData({ ...formData, petType: 'قط', groomingType: '', bathingType: '' })}
+                    className={`flex-1 py-4 rounded-2xl border flex items-center justify-center gap-2 transition-all font-bold ${
+                      formData.petType === 'قط' ? 'bg-primary text-white border-primary shadow-lg shadow-primary/20' : 'bg-white text-gray-600 border-gray-200 hover:border-primary/50'
+                    }`}
+                  >
+                    <Cat size={20} />
+                    <span>قط</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setFormData({ ...formData, petType: 'كلب', groomingType: '', bathingType: '' })}
+                    className={`flex-1 py-4 rounded-2xl border flex items-center justify-center gap-2 transition-all font-bold ${
+                      formData.petType === 'كلب' ? 'bg-primary text-white border-primary shadow-lg shadow-primary/20' : 'bg-white text-gray-600 border-gray-200 hover:border-primary/50'
+                    }`}
+                  >
+                    <Dog size={20} />
+                    <span>كلب</span>
+                  </button>
+                </div>
+              </div>
+
+              <div className="space-y-4 md:col-span-2">
+                <label className="block text-sm font-bold text-gray-700 mr-2">اختر الخدمات المطلوبة (يمكنك اختيار كليهما)</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  <div className="space-y-3">
+                    <h5 className="font-black text-primary text-sm flex items-center gap-2">
+                      <Scissors size={16} />
+                      <span>أنواع الحلاقة</span>
+                    </h5>
+                    <div className="grid grid-cols-1 gap-2">
+                      <label className={`flex items-center gap-3 p-4 rounded-xl border cursor-pointer transition-all ${
+                        formData.groomingType === '' ? 'bg-primary/5 border-primary text-primary' : 'bg-white border-gray-100 hover:border-gray-200'
+                      }`}>
+                        <input
+                          type="radio"
+                          name="grooming"
+                          className="hidden"
+                          value=""
+                          checked={formData.groomingType === ''}
+                          onChange={(e) => setFormData({ ...formData, groomingType: e.target.value })}
+                        />
+                        <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                          formData.groomingType === '' ? 'border-primary' : 'border-gray-300'
+                        }`}>
+                          {formData.groomingType === '' && <div className="w-2.5 h-2.5 bg-primary rounded-full"></div>}
+                        </div>
+                        <span className="font-bold text-sm text-gray-400">بدون حلاقة</span>
+                      </label>
+                      {(formData.petType === 'قط' ? catGroomingOptions : dogGroomingOptions).map((option) => (
+                        <label key={option} className={`flex items-center gap-3 p-4 rounded-xl border cursor-pointer transition-all ${
+                          formData.groomingType === option ? 'bg-primary/5 border-primary text-primary' : 'bg-white border-gray-100 hover:border-gray-200'
+                        }`}>
+                          <input
+                            type="radio"
+                            name="grooming"
+                            className="hidden"
+                            value={option}
+                            checked={formData.groomingType === option}
+                            onChange={(e) => setFormData({ ...formData, groomingType: e.target.value })}
+                          />
+                          <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                            formData.groomingType === option ? 'border-primary' : 'border-gray-300'
+                          }`}>
+                            {formData.groomingType === option && <div className="w-2.5 h-2.5 bg-primary rounded-full"></div>}
+                          </div>
+                          <span className="font-bold text-sm">{option}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <h5 className="font-black text-primary text-sm flex items-center gap-2">
+                      <Sparkles size={16} />
+                      <span>أنواع التحميم</span>
+                    </h5>
+                    <div className="grid grid-cols-1 gap-2">
+                      <label className={`flex items-center gap-3 p-4 rounded-xl border cursor-pointer transition-all ${
+                        formData.bathingType === '' ? 'bg-primary/5 border-primary text-primary' : 'bg-white border-gray-100 hover:border-gray-200'
+                      }`}>
+                        <input
+                          type="radio"
+                          name="bathing"
+                          className="hidden"
+                          value=""
+                          checked={formData.bathingType === ''}
+                          onChange={(e) => setFormData({ ...formData, bathingType: e.target.value })}
+                        />
+                        <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                          formData.bathingType === '' ? 'border-primary' : 'border-gray-300'
+                        }`}>
+                          {formData.bathingType === '' && <div className="w-2.5 h-2.5 bg-primary rounded-full"></div>}
+                        </div>
+                        <span className="font-bold text-sm text-gray-400">بدون تحميم</span>
+                      </label>
+                      {bathingOptions.map((option) => (
+                        <label key={option} className={`flex items-center gap-3 p-4 rounded-xl border cursor-pointer transition-all ${
+                          formData.bathingType === option ? 'bg-primary/5 border-primary text-primary' : 'bg-white border-gray-100 hover:border-gray-200'
+                        }`}>
+                          <input
+                            type="radio"
+                            name="bathing"
+                            className="hidden"
+                            value={option}
+                            checked={formData.bathingType === option}
+                            onChange={(e) => setFormData({ ...formData, bathingType: e.target.value })}
+                          />
+                          <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                            formData.bathingType === option ? 'border-primary' : 'border-gray-300'
+                          }`}>
+                            {formData.bathingType === option && <div className="w-2.5 h-2.5 bg-primary rounded-full"></div>}
+                          </div>
+                          <span className="font-bold text-sm">{option}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full btn-primary py-5 text-xl flex items-center justify-center gap-3 shadow-xl shadow-primary/30"
+            >
+              <MessageCircle size={24} />
+              <span>إرسال الطلب عبر واتساب</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const ServicesPage = (_props: { key?: any }) => {
   const allServices = [
@@ -667,9 +923,9 @@ const ServicesPage = (_props: { key?: any }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="py-24 bg-gray-50"
+      className="bg-gray-50"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
           <h1 className="text-5xl font-black text-gray-900 mb-6">خدماتنا الشاملة</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
